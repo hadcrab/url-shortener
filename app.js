@@ -1,4 +1,5 @@
 "use strict";
+import db from "./db.js";
 
 const path = require("node:path");
 const AutoLoad = require("@fastify/autoload");
