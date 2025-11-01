@@ -1,5 +1,4 @@
 "use strict";
-import db from "./db.js";
 
 const path = require("node:path");
 const AutoLoad = require("@fastify/autoload");
@@ -9,7 +8,6 @@ const options = {};
 
 module.exports = async function (fastify, opts) {
   // Place here your custom code!
-
   // Do not touch the following lines
 
   // This loads all plugins defined in plugins
