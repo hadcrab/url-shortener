@@ -17,7 +17,8 @@ export default async function (fastify, opts) {
     const statement = db.prepare(
       "INSERT INTO links (short_url, original_url) VALUES (?, ?)",
     );
+    const shortLink = `${request.protocol}://${request.hostname}/${short}`;
     statement.run(short, url);
-    return { short_url: short, original_url: url };
+    return { short_url: shortLink, original_url: url };
   });
 }
