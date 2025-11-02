@@ -6,9 +6,18 @@ export default async function (fastify, opts) {
   fastify.post("/shorten", async (request, reply) => {
     const { url } = request.body;
     const short = nanoid(6);
+    const existing = db
+      .prepare("SELECT short_url FROM links WHERE original_url = ?")
+      .get(url);
+
+    if (existing) {
+      return { short_url: existing.short_url, origninal_url: url };
+    }
+
     const statement = db.prepare(
       "INSERT INTO links (short_url, original_url) VALUES (?, ?)",
     );
     statement.run(short, url);
+    return { short_url: short, original_url: url };
   });
 }
