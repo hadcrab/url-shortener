@@ -11,7 +11,7 @@ export default async function (fastify, opts) {
       .get(url);
 
     if (existing) {
-      return { short_url: existing.short_url, origninal_url: url };
+      return { short_url: existing.short_url, original_url: url };
     }
 
     const statement = db.prepare(
